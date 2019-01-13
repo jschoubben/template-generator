@@ -1,0 +1,12 @@
+CREATE PROC [{{SCHEMA_NAME}}].[usp_{{TABLE_NAME}}_GetById]
+    @id [bigint],
+AS
+BEGIN 
+	set nocount on;
+    SELECT 
+        {{BASE_COLUMNS}}[{{NAME}}],
+        {{/BASE_COLUMNS}}[Id]
+    FROM [{{SCHEMA_NAME}}].[{{TABLE_NAME}}]
+    WHERE Id = @id
+END
+GO

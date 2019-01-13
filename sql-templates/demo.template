@@ -1,0 +1,28 @@
+Dit is een test
+
+De "Simple tag" is een inline tag om een waarde te inserten {{DATE_NOW}}.
+Je kan ook een stuk tekst in een tag plaatsen, dit is een "Template tag ":{{TAG1}}"stuk tekst"{{/TAG1}}.
+
+Een template tag kan ook zijn eigen tags bevatten:
+{{TAG2}}
+    Herhalen met andere tags in {{TAG_DATE_NOW}}
+{{/TAG2}}
+
+{{TAG3}}
+    {{TAG3_TITLE}}
+    Hier staat een template in een template:
+    {{TAG_INLINE}}
+        {{TAG_INLINE_TITLE}}
+        Dit is de inline template met een variabele.
+    {{/TAG_INLINE}}
+{{/TAG3}}
+
+Een template tag kan zelfs zijn eigen templates bevatten:
+{{TAG3}}
+    {{TAG3_TITLE}}
+    Hier staat een template in een template:
+    {{TAG_INLINE}}
+        {{TAG_INLINE_TITLE}}
+        Dit is de inline template met een variabele.
+    {{/TAG_INLINE}}
+{{/TAG3}}

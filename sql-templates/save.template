@@ -1,0 +1,32 @@
+CREATE PROC [{{SCHEMA_NAME}}].[usp_{{TABLE_NAME}}_Save]
+    @Id bigint output,
+    {{BASE_COLUMNS}}@{{NAME}} [{{TYPE}}],
+    {{/BASE_COLUMNS}}@user nvarchar(50)
+AS
+BEGIN 
+	set nocount on;
+
+    IF(EXISTS(Select * FROM [{{SCHEMA_NAME}}].[{{TABLE_NAME}}] WHERE Id = @Id))
+    BEGIN
+        UPDATE [{{SCHEMA_NAME}}].[{{TABLE_NAME}}] SET
+            {{UPDATE_COLUMNS}}[{{NAME}}] = @{{NAME}},
+            {{/UPDATE_COLUMNS}}[ModifiedOn] = GETDATE(),
+            [ModifiedBy] = @user
+        WHERE [Id] = @Id
+    END
+    ELSE
+    BEGIN
+        INSERT INTO [{{SCHEMA_NAME}}].[{{TABLE_NAME}}]
+        (
+            {{BASE_COLUMNS}}[{{NAME}}],
+            {{/BASE_COLUMNS}}[CreatedBy]
+        )
+        VALUES
+        (
+            {{BASE_COLUMNS}}@{{NAME}},
+            {{/BASE_COLUMNS}}@user
+        )
+        SELECT @Id = SCOPE_IDENTITY();
+    END
+END
+GO
