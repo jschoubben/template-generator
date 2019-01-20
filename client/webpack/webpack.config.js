@@ -26,16 +26,16 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.(scss)$/,
+        test: /\.(s?css)$/,
         include: [
-          './src'
+          path.resolve(rootDir,'src')
         ],
         use: ['css-loader', 'sass-loader']
       },
       {
         test: /styles\.scss$/,
         include: [
-          './styles'
+          path.resolve(rootDir, 'styles')
         ],
         use: ExtractTextPlugin.extract(['raw-loader', 'sass-loader'])
       }
