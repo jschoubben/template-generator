@@ -1,0 +1,6 @@
+@import '../src/shared/code-mirror/lib/codemirror.scss';
+@import '../src/shared/code-mirror/addons/fold/foldgutter.scss';
+@import '../src/shared/code-mirror/addons/scroll/simplescrollbars.scss';
+
+@import "default";
+@import "code-mirror.custom";

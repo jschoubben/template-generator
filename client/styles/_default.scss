@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+@import url('https://fonts.googleapis.com/css?family=Karla');
+
+*, *:before, *:after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    position: relative;
+    min-height: 100%;
+    font-family: 'Karla';
+    font-size: 14px;
+    background: #18121E;
+    background: #233237;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+  }

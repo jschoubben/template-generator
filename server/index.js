@@ -1,5 +1,8 @@
-const tg = require('./template-generator');
-const sqlGenerator = require('./sql-generator');
+const tg = require('./template-generator')
+const sqlGenerator = require('./sql-generator')
+const express = require('express')
+const app = express()
+const port = 3000
 
 
 const dbSchema = {
@@ -111,38 +114,10 @@ const customValues = {
     }
 }
 
-async function testTemplate() {
-    const generatedTemplate = await tg.generateTemplate('./sql-templates/test.template', {
-        DATE_NOW: Date.now().toString(),
-        TAG1: [{
+app.use('/', express.static('../client/public'));
 
-        }],
-        TAG2: [{
-            TAG_DATE_NOW: Date.now().toString()
-        }],
-        TAG3: [{
-            TAG3_TITLE: 'Title 3-1',
-            TAG_INLINE: [{
-                TAG_INLINE_TITLE: 'Inline title 1'
-            }]
-        }, {
-            TAG3_TITLE: 'Title 3-2',
-            TAG_INLINE: [{
-                TAG_INLINE_TITLE: 'Inline title 2'
-            }]
-        }],
-        TAG_HYBRID: 'COOLE'
-    });
-    console.log(generatedTemplate);
-}
+app.get('/api/sql', async (req, res) => {
+    await sqlGenerator.generateSQLTemplate(`./sql-templates/${req.query.template}.template`, dbSchema, customValues)
+})
 
-(async () => {
-    try {
-        console.log(await sqlGenerator.generateSQLTemplate('./sql-templates/create.template', dbSchema, customValues));
-        console.log(await sqlGenerator.generateSQLTemplate('./sql-templates/save.template', dbSchema, customValues));
-        console.log(await sqlGenerator.generateSQLTemplate('./sql-templates/getAll.template', dbSchema, customValues));
-        console.log(await sqlGenerator.generateSQLTemplate('./sql-templates/getById.template', dbSchema, customValues));
-    } catch (err) {
-        console.error(err.stack);
-    }
-})();
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
