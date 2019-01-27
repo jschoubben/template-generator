@@ -6,14 +6,11 @@ export function Webcomponent(config = {
 }) {
   return function decorator(klass) {
     validateSelector(config.selector)
-    if (!config.template) {
-      throw new Error('You need to pass a template for the element')
-    }
     const element = document.createElement('template')
     if(config.style){
       config.template = `<style>${config.style}</style>${config.template}`
     }
-    element.innerHTML = config.template
+    element.innerHTML = config.template || '<div></div>'
 
     const connectedCallback = klass.prototype.connectedCallback || function(){}
     klass.prototype.connectedCallback = function() {

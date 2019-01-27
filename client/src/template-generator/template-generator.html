@@ -1,17 +1,21 @@
 <header>
-  <nav>
-      <h1>Template generator</h1>
-  </nav>  
+  <h1>T / G</h1>
+  <div class="actions">
+    <button class="square opaque yellowish" icon="three-bars" id="toggleDirection" is="tg-button"></tg-button>
+    <button class="opaque yellowish" icon="double-gear" id="generateTemplate" is="tg-button">Parse</tg-button>
+  </div>
 </header>
 
-<div id="model-pane">
-  <tg-model-pane></tg-model-pane>
-</div>
+<div class="panes">
+  <div id="model-pane">
+    <tg-model-pane></tg-model-pane>
+  </div>
 
-<div class="result-pane">
-  <tg-result-pane></tg-result-pane>
-</div>
+  <div class="result-pane">
+    <tg-result-pane></tg-result-pane>
+  </div>
 
-<div class="template-pane">
-  <tg-template-pane></tg-template-pane>
+  <div class="template-pane">
+    <tg-template-pane></tg-template-pane>
+  </div>
 </div>

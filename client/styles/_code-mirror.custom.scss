@@ -1,6 +1,17 @@
+@import '../src/shared/code-mirror/theme/solarized.scss';
+@import "colors";
+
+.CodeMirror {
+  height: 100%;
+}
+
 .CodeMirror-overlayscroll-vertical,
 .CodeMirror-overlayscroll-horizontal {
   > div {
-    background-color: #EAC67A;
+    background-color: $yellowish;
   }
+}
+
+.CodeMirror-gutters {
+  background-color: $gutters;
 }

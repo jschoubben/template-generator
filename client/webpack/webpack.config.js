@@ -8,6 +8,7 @@ const rootDir = path.resolve(__dirname, '..')
 module.exports = {
   entry: {
     main: [
+      'babel-polyfill',
       rootDir + '/src/index.js', 
       rootDir + '/styles/styles.scss'
     ]
@@ -24,6 +25,10 @@ module.exports = {
       {
         test: /\.(js)$/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.(svg)$/,
+        use: 'raw-loader'
       },
       {
         test: /\.(s?css)$/,

@@ -1,6 +1,6 @@
 const templateGenerator = require('./template-generator');
 
-async function generateSQLTemplate(templatePath, dataModel, customValues){
+async function generateSQLTemplate(template, dataModel, customValues){
     const result = {};
     for(const schemaName of Object.keys(dataModel)) {
         const schema = dataModel[schemaName];
@@ -22,7 +22,7 @@ async function generateSQLTemplate(templatePath, dataModel, customValues){
                 addColumnData(tableProperties, columnName, getColumnProperties(customValues.defaultColumns[columnName], customValues), false);
             }
             const sqlTableProperties =  mapToTemplateGenerator(tableProperties);
-            return await templateGenerator.generateTemplate(templatePath, sqlTableProperties);
+            result[schemaName][tableName] = await templateGenerator.generateTemplate(template, sqlTableProperties);
         }
     }
     return result;

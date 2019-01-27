@@ -1,5 +1,7 @@
+@import "colors";
+
 @import url('https://fonts.googleapis.com/css?family=Inconsolata');
-@import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
 
 *, *:before, *:after {
     box-sizing: border-box;
@@ -7,11 +9,11 @@
   
   html {
     position: relative;
-    min-height: 100%;
-    font-family: 'Karla';
+    max-height: 100%;
+    overflow: hidden;
+    font-family: 'Orbitron';
     font-size: 14px;
-    background: #18121E;
-    background: #233237;
+    background: $dark;
   }
   
   body {

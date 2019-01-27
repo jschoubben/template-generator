@@ -1,0 +1,53 @@
+@import "colors";
+@import "mixins";
+
+button {
+  font-family: monospace;
+  padding: 0.5em 0.8em;
+  font-size: 1.3em;
+  font-weight: 600;
+  color: $darkest;
+  box-shadow: 2px 2px 0 0 rgba(0, 0, 0, 0.17);
+  border: 0;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:not(.opaque) {
+    @include colorButton($yellowish, $dark);
+
+    &.dark {
+      @include colorButton($dark, $yellowish);
+    }
+
+    &.darkest {
+      @include colorButton($darkest, $yellowish);
+    }
+
+    &.rust {
+      @include colorButton($rust, $yellowish);
+    }
+  }
+
+  &.opaque {
+    background: transparent;
+    box-shadow: none;
+    border: 2px solid;
+
+    @include colorButton(transparent, $yellowish);
+
+    &.dark {
+      @include colorButton(transparent, $dark);
+    }
+
+    &.darkest {
+      @include colorButton(transparent, $darkest);
+    }
+
+    &.rust {
+      @include colorButton(transparent, $rust);
+    }
+  }
+}

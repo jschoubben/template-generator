@@ -1,3 +1,7 @@
+export * from './panes/model-pane/model-pane'
+export * from './panes/result-pane/result-pane'
+export * from './panes/template-pane/template-pane'
+
 import { Webcomponent } from '../decorators/index'
 import css from './template-generator.scss'
 import html from './template-generator.html'
@@ -13,46 +17,49 @@ export default class TemplateGenerator extends HTMLElement {
     }
 
     connectedCallback() {
-        this.$input = this.native.querySelector('tg-model-pane')
-        this.$input.addEventListener('onSubmit', this.addItem.bind(this))
+        // define private variables
+        this.toggleButton = this.native.querySelector('#toggleDirection')
+        this.parseButton = this.native.querySelector('#generateTemplate')
+        this.panes = this.native.querySelector('.panes')
+        this.modelPane = this.native.querySelector('tg-model-pane')
+        this.resultPane = this.native.querySelector('tg-result-pane')
+        this.templatePane = this.native.querySelector('tg-template-pane')
+
+        // load default settings
+        if(localStorage.getItem('stng.dir') === 'true') {
+            this.toggleDirection()
+        }
+        // add event listeners
+        this.toggleButton.addEventListener('click', this.toggleDirection.bind(this))
+        this.parseButton.addEventListener('click', this.parseTemplate.bind(this))
         this._render()
     }
 
-    addItem(e) {
-        this._list.push({
-            text: e.detail,
-            checked: false,
-        });
-        this._render()
+    toggleDirection(){
+        this.toggleButton.classList.toggle('vertical')
+        this.panes.classList.toggle('horizontal')
+        localStorage.setItem('stng.dir', this.panes.classList.contains('horizontal'))
     }
 
-    removeItem(e) {
-        this._list.splice(e.detail, 1)
-        this._render()
-    }
-
-    toggleItem(e) {
-        const item = this._list[e.detail]
-        this._list[e.detail] = Object.assign({}, item, {
-            checked: !item.checked
-        });
-        this._render()
+    async parseTemplate() {
+        const url = 'http://localhost:3000/api/parse'
+        const resp = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: JSON.parse(this.modelPane.model),
+                customValues: JSON.parse(this.modelPane.customValues),
+                template: this.templatePane.value
+            })
+        })
+        const body = await resp.json()
+        this.resultPane.results = body.data
     }
 
     disconnectedCallback() {}
 
     _render() {
-        if (!this.$listContainer) return;
-        // empty the list
-        this.$listContainer.innerHTML = ''
-        this._list.forEach((item, index) => {
-            let $item = document.createElement('tg-todo-item')
-            $item.setAttribute('text', item.text)
-            $item.checked = item.checked
-            $item.index = index
-            $item.addEventListener('onRemove', this.removeItem.bind(this))
-            $item.addEventListener('onToggle', this.toggleItem.bind(this))
-            this.$listContainer.appendChild($item)
-        });
     }
 }

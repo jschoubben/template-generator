@@ -1,0 +1,13 @@
+@mixin colorButton($bgColor, $fgColor, $lighten: 5%) {
+  background-color: $bgColor;
+  color: $fgColor;
+  border-color: $fgColor;
+  
+  > svg {
+    fill: $fgColor;
+  }
+  
+  &:hover {
+    background-color: lighten($bgColor, $lighten);
+  }
+}

@@ -1,5 +1,55 @@
-@import '../../../shared/code-mirror/theme/solarized.css';
+@import '../../../../styles/colors';
 
-h2 {
-  color: red;
+
+tg-model-pane {
+  display: flex;
+  flex-direction: column;
+
+  h3.title {
+    .small {
+      color: lighten($rust, 15%);
+      font-size: 0.8em;
+      font-family: monospace;
+      font-style: italic;
+    }
+  }
+
+  .pane {
+    flex: 0 0 50%;
+    border-bottom: 5px solid $rust;
+    
+    .pane-header {
+      .actions {
+        flex: 0 0 50px;
+      }
+    }
+    
+    .CodeMirror {
+      max-height: calc(50% - 40px);
+    }
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+.panes.horizontal {
+  tg-model-pane {
+    flex-direction: row;
+
+    .pane {
+      width: 50%;
+      border-right: 5px solid $rust;
+      border-bottom: 0;
+
+      .CodeMirror {
+        max-height: calc(100% - 40px);
+      }
+
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
 }

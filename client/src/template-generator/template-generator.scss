@@ -1,12 +1,187 @@
+@import "../../styles/colors";
 
 header {
-  background: #984B43;
+  background: $rust;
+  display: flex;
+  align-items: center;
+  height: 60px;
+  position: relative;
 
-  nav {
-    h1 {
-      color: #EAC67A;
-      line-height: 2.8em;
-      padding: 0 30px;
+  h1 {
+    color: $yellowish;
+    padding: 0 15px;
+    flex: 0 0 150px;
+    margin: 0;
+  }
+
+  .actions {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    button {
+      margin: 0;
+      height: 100%;
+      border-top: 0;
+      border-bottom: 0;
+      border-right: 0;
+
+      &.square {
+        width: 60px;
+
+        .icon {
+          width: 25px;
+          height: 25px;
+        }
+      }
+
+      &.vertical {
+
+        .icon-three-bars {
+          transform: rotate(90deg);
+        }
+      }
+    }
+
+    .icon-three-bars {
+      margin: 0;
+      transition-duration: 1s;
+    }
+  }
+}
+
+.panes {
+  display: flex;
+  transition-duration: 1s;
+  height: calc(100% - 60px);
+
+  .CodeMirror {
+    height: calc(100% - 40px);
+    max-height: calc(100% - 40px);
+  }
+
+  &.horizontal {
+    flex-direction: column;
+
+    .CodeMirror {
+      height: calc(100% - 40px);
+      max-height: none;
+    }
+
+    >* {
+      height: 33.33%;
+      border-right: 0;
+      max-width: 100%;
+      border-top: 5px solid $rust;
+
+      &:first-child {
+        border-top: 0;
+      }
+    }
+
+    tg-dropdown {
+      max-width: none !important;
+
+      >span {
+        max-width: none !important;
+      }
+    }
+  }
+
+  >* {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    border-right: 5px solid $rust;
+
+    &:last-child {
+      border-right: 0;
+    }
+  }
+
+  .pane-header {
+    height: 40px;
+    display: flex;
+    background: $darkest;
+
+    h3 {
+      margin: 0;
+      padding-left: 10px;
+      flex: 1;
+      line-height: 40px;
+      color: $rust;
+    }
+
+    .actions {
+      flex: 1;
+      display: flex;
+      justify-content: flex-end;
+
+      tg-dropdown {
+        font-family: monospace;
+        flex: 1 1 120px;
+        padding: 0 0 0 10px;
+        color: $yellowish;
+        border-left: 2px solid $yellowish;
+
+        @media screen and (max-width: 800px) {
+          max-width: 120px;
+        }
+
+        >span {
+          line-height: 40px;
+          overflow: hidden;
+
+          @media screen and (max-width: 800px) {
+            max-width: 120px;
+          }
+        }
+
+        >svg {
+          flex-basis: 2em;
+          width: 2em;
+          height: 2em;
+          fill: $yellowish;
+        }
+
+        ul {
+          background: $darkest;
+          border: 2px solid $yellowish;
+
+          li {
+            line-height: 40px;
+            border-bottom: 2px solid $yellowish;
+            padding: 0 15px;
+
+            &:last-child {
+              border: 0;
+            }
+          }
+        }
+      }
+
+      button {
+        flex: 0 0 30px;
+        padding: 0 9px;
+        margin: 0;
+        margin-right: 1px;
+        height: 100%;
+        width: 40px;
+        border-top: 0;
+        border-bottom: 0;
+        border-right: 0;
+
+        .icon {
+          width: 22px;
+          height: 22px;
+          margin: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
     }
   }
 }

@@ -1,13 +1,8 @@
 var fs = require('fs').promises;
 
 async function generateTemplate(template, tokenData) {
-    const templateContent = await getTemplate(template);
-    const templateParts = getTokens(templateContent);
+    const templateParts = getTokens(template);
     return replaceTokens(templateParts, tokenData);
-}
-
-async function getTemplate(template) {
-    return await fs.readFile(template, 'utf8');
 }
 
 function replaceTokens(templateParts, tokenObject) {
