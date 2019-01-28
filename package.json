@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
-    "install": "cd client && npm i && cd ../server && npm i"
+    "install": "cd server && npm i"
   },
   "dependencies": {
     "express": "^4.16.4"
