@@ -11,5 +11,7 @@
   "dependencies": {
     "express": "^4.16.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "applicationinsights": "^1.0.8"
+  }
 }
