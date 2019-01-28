@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "SET NODE_ENV=production & node server/index.js"
+    "start": "node server/index.js"
   },
   "dependencies": {
     "express": "^4.16.4"
