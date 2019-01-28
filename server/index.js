@@ -7,7 +7,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 
-if(process.envAPPINSIGHTS_INSTRUMENTATIONKEY){
+if(process.env.APPINSIGHTS_INSTRUMENTATIONKEY){
     appInsights.setup(process.env.APPINSIGHTS_INSTRUMENTATIONKEY)
     appInsights.start()
 } 

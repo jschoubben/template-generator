@@ -4,9 +4,9 @@
   "description": "Web api to generate templates and server SPA",
   "author": "JS",
   "license": "MIT",
-  "main": "./server/index.js",
+  "main": "server/index.js",
   "scripts": {
-    "start": "node ./server/index.js"
+    "start": "node server/index.js"
   },
   "dependencies": {
     "express": "^4.16.4"
