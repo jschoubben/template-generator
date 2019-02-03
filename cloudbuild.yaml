@@ -1,5 +1,5 @@
 steps:
-- name: 'gcr.io/$PROJECT_ID/envsubst'
+- name: 'eu.gcr.io/$PROJECT_ID/envsubst'
   args: ['/kubernetes.yaml', '/kubernetes.yaml']
   env:
   - 'TAG=$COMMIT_SHA'
