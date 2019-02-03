@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
       - name: template-generator-client
-        image: sql-generator_nginx
+        image: sql-generator_nginx:${TAG}
         ports:
         - containerPort: 80
       - name: template-generator-server
-        image: sql-generator_server
+        image: sql-generator_server:${TAG}
         ports:
         - containerPort: 3000

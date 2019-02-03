@@ -1,0 +1,17 @@
+steps:
+- name: 'gcr.io/$PROJECT_ID/envsubst'
+  args: ['/kubernetes.yaml', '/kubernetes.yaml']
+  env:
+  - 'TAG=$COMMIT_SHA'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--build-arg', 'PROJECT_ID=$PROJECT_ID', '--cache-from', 'eu.gcr.io/$PROJECT_ID/template-generator-client:latest', '-t', 'eu.gcr.io/$PROJECT_ID/template-generator-client:$COMMIT_SHA', '-t', 'eu.gcr.io/$PROJECT_ID/template-generator-client:latest', './client']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '--build-arg', 'PROJECT_ID=$PROJECT_ID', '--cache-from', 'eu.gcr.io/$PROJECT_ID/template-generator-server:latest', '-t', 'eu.gcr.io/$PROJECT_ID/template-generator-server:$COMMIT_SHA', '-t', 'eu.gcr.io/$PROJECT_ID/template-generator-server:latest', './server']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'eu.gcr.io/$PROJECT_ID/template-generator-client:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'eu.gcr.io/$PROJECT_ID/template-generator-server:$COMMIT_SHA']
+- name: 'gcr.io/cloud-builders/kubectl'
+  env: ['CLOUDSDK_COMPUTE_ZONE=europe-west3-a', 'CLOUDSDK_CONTAINER_CLUSTER=cluster-template-generator']
+  args: ['apply', '-f', '/kubernetes.yaml']
+images: [  'eu.gcr.io/$PROJECT_ID/template-generator-client:latest',   'eu.gcr.io/$PROJECT_ID/template-generator-server:latest']
