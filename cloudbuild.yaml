@@ -13,5 +13,5 @@ steps:
   args: ['push', 'eu.gcr.io/$PROJECT_ID/template-generator-server:$COMMIT_SHA']
 - name: 'gcr.io/cloud-builders/kubectl'
   env: ['CLOUDSDK_COMPUTE_ZONE=europe-west3-a', 'CLOUDSDK_CONTAINER_CLUSTER=cluster-template-generator']
-  args: ['apply', '-f', '/kubernetes.yaml']
+  args: ['apply', '-f', '/workspace/kubernetes.yaml']
 images: [  'eu.gcr.io/$PROJECT_ID/template-generator-client:latest',   'eu.gcr.io/$PROJECT_ID/template-generator-server:latest']
