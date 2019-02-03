@@ -1,0 +1,21 @@
+version: '3'
+services:
+    server:
+        build:
+            context: ./server
+            dockerfile: ./Dockerfile
+        ports:
+            - "3000:3000"
+        environment:
+            PORT: 3000
+            NODE_ENV: production
+        restart: always
+    nginx:
+        build:
+            context: ./client
+            dockerfile: ./Dockerfile
+        depends_on:
+            - server
+        ports:
+            - "8080:80"
+        restart: always

@@ -6,8 +6,13 @@
   "license": "MIT",
   "main": "index.html",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack --mode development --config webpack/webpack.config.dev.js --watch --progress"
+    "build": "webpack --env.dev --open --watch --progress --colors",
+    "build:prod": "webpack --env.prod --progress --colors",
+    "start": "webpack-dev-server --content-base public/ --env.dev --open --watch --progress --colors",
+    "docker:build": "docker build -t template-generator-client:v1 -f Dockerfile .",
+    "docker:build-cloud": "docker build -t eu.gcr.io/template-generator-230500/template-generator-client:latest -f Dockerfile .",
+    "docker:push": "docker push eu.gcr.io/template-generator-230500/template-generator-client:latest",
+    "docker:run": "docker run -d -p 3000:3000 template-generator-client:v1"
   },
   "dependencies": {},
   "devDependencies": {
@@ -25,7 +30,8 @@
     "node-sass": "^4.11.0",
     "raw-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
-    "webpack": "4.19.0",
-    "webpack-cli": "^2.0.6"
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }

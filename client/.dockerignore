@@ -1,0 +1,6 @@
+# Ignore everything
+**
+
+# Include public folder
+!/public/**
+!nginx.conf

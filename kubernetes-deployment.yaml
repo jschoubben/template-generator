@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: template-generator-deployment
+  labels:
+    app: template-generator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: template-generator
+  template:
+    metadata:
+      labels:
+        app: template-generator
+    spec:
+      containers:
+      - name: template-generator-client
+        image: sql-generator_nginx
+        ports:
+        - containerPort: 80
+      - name: template-generator-server
+        image: sql-generator_server
+        ports:
+        - containerPort: 3000

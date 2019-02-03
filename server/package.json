@@ -1,0 +1,22 @@
+{
+  "name": "template-generator",
+  "version": "1.0.0",
+  "description": "Web api to generate templates and server SPA",
+  "author": "JS",
+  "license": "MIT",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "start:dev": "SET NODE_ENV=development&& npm start",
+    "start:prod": "SET NODE_ENV=production&& npm start",
+    "docker:build": "docker build -t template-generator-server:v1 -f Dockerfile  .",
+    "docker:run": "docker run -d -p 3000:3000 template-generator-server:v1"
+  },
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "winston": "^3.2.0",
+    "applicationinsights": "^1.0.8"
+  }
+}

@@ -1,0 +1,1 @@
+module.exports = env => require('./webpack/webpack.' + Object.keys(env)[0] + '.config.js')(env)
