@@ -12,7 +12,7 @@
     "docker:build": "docker build -t template-generator-client:v1 -f Dockerfile .",
     "docker:build-cloud": "docker build -t eu.gcr.io/template-generator-230500/template-generator-client:latest -f Dockerfile .",
     "docker:push": "docker push eu.gcr.io/template-generator-230500/template-generator-client:latest",
-    "docker:run": "docker run -d -p 3000:3000 template-generator-client:v1"
+    "docker:run": "docker run -d -p 8080:80 template-generator-client:v1"
   },
   "dependencies": {},
   "devDependencies": {
