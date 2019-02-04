@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
       - name: template-generator-client
-        image: eu.gcr.io/template-generator-230500/sql-generator-client:${TAG}
+        image: eu.gcr.io/template-generator-230500/template-generator-client:${TAG}
         ports:
         - containerPort: 80
       - name: template-generator-server
-        image: eu.gcr.io/template-generator-230500/sql-generator-server:${TAG}
+        image: eu.gcr.io/template-generator-230500/template-generator-server:${TAG}
         ports:
         - containerPort: 3000
