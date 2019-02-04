@@ -19,6 +19,13 @@ spec:
         image: eu.gcr.io/template-generator-230500/template-generator-client:${TAG}
         ports:
         - containerPort: 80
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: MY_IP
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
       - name: template-generator-server
         image: eu.gcr.io/template-generator-230500/template-generator-server:${TAG}
         ports:
