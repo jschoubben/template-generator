@@ -7,7 +7,7 @@ module.exports = env => {
     plugins: [
       ...defaultConfig.plugins,
       new webpack.DefinePlugin({
-        "API_URL": 'http://35.246.241.43/'
+        "API_URL": JSON.stringify('http://35.246.241.43/')
       })
     ],
     mode: 'production',
