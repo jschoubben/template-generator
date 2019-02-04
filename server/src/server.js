@@ -10,7 +10,7 @@ const templateHelper = require('./helpers/template-helper')
 const express = require('express')
 var morgan = require('morgan')
 var winston = require('../config/winston')
-winston.log('test')
+winston.debug('Starting application...')
 const app = express()
 const port = process.env.PORT || 3000
 const config = require(`../config/${process.env.NODE_ENV}.js`)
