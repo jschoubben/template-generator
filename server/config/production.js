@@ -1,7 +1,7 @@
 module.exports = {
   allowedOrigins: [
-    'http://' + process.env.MY_IP,
-    'http://35.246.241.43/',
+    'http://template-generator.tk/',
+    'http://www.template-generator.tk/',
     'http://localhost'
   ]
 }
