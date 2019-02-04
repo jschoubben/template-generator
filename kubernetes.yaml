@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: template-generator-deployment
+  name: template-generator
   labels:
     app: template-generator
 spec:
@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
       - name: template-generator-client
-        image: sql-generator-client:${TAG}
+        image: eu.gcr.io/template-generator-230500/sql-generator-client:${TAG}
         ports:
         - containerPort: 80
       - name: template-generator-server
-        image: sql-generator-server:${TAG}
+        image: eu.gcr.io/template-generator-230500/sql-generator-server:${TAG}
         ports:
         - containerPort: 3000
