@@ -13,6 +13,7 @@ var winston = require('../config/winston')
 winston.debug('Starting application...')
 const app = express()
 const port = process.env.PORT || 3000
+winston.debug(JSON.stringify(process.env))
 const config = require(`../config/${process.env.NODE_ENV}.js`)
 
 app.use(morgan('combined', {
