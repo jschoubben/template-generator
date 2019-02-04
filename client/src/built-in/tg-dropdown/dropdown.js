@@ -74,7 +74,7 @@ export class Dropdown extends HTMLElement {
       cancelable: false,
       composed: true,
       detail: this._selectedOption
-    });
+    })
     this.dispatchEvent(select)
   }
 

@@ -22,7 +22,7 @@ export default class TGCodeMirror extends HTMLElement {
       theme: this.getAttribute('theme') || 'solarized dark',
       extraKeys: {
         'Ctrl-Q': function (cm) {
-          cm.foldCode(cm.getCursor());
+          cm.foldCode(cm.getCursor())
         }
       },
       foldGutter: true,
