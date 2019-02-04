@@ -9,8 +9,8 @@
     "start": "node src/server.js",
     "start:dev": "SET NODE_ENV=development&& npm start",
     "start:prod": "SET NODE_ENV=production&& npm start",
-    "docker:build": "docker build -t template-generator-server:v1 -f Dockerfile  .",
-    "docker:run": "docker run -d -p 3000:3000 template-generator-server:v1"
+    "docker:build": "docker build -t template-generator-server:latest -f Dockerfile  .",
+    "docker:run": "docker run -i -p 3000:3000 template-generator-server:latest"
   },
   "dependencies": {
     "app-root-path": "^2.1.0",
