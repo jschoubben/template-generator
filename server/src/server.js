@@ -13,9 +13,9 @@ var winston = require('../config/winston')
 winston.debug('Starting application...')
 const app = express()
 const port = process.env.PORT || 3000
-winston.debug(JSON.stringify(process.env))
+winston.debug(`Loading config for ${process.env.NODE_ENV} environment`)
 const config = require(`../config/${process.env.NODE_ENV}.js`)
-
+winston.debug(`config loaded: ${JSON.stringify(config)}`)
 app.use(morgan('combined', {
     stream: winston.stream
 }))
@@ -24,6 +24,7 @@ app.use(bodyParser.json())
 
 app.use(function (req, res, next) {
     const origin = req.headers.origin;
+    winston.debug(`Request received from ${origin}`)
     if (config.allowedOrigins.indexOf(origin) > -1) {
         res.setHeader('Access-Control-Allow-Origin', origin);
     }
