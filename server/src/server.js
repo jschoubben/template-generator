@@ -34,20 +34,20 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.post('/api/parse', async (req, res) => {
+app.post('/parse', async (req, res) => {
     const result = await sqlGenerator.generateSQLTemplate(req.body.template, req.body.model, req.body.customValues)
     res.send({
         data: result
     })
 })
-app.get('/api/templates', async (req, res) => {
+app.get('/templates', async (req, res) => {
     const result = await templateHelper.getTemplates('./templates/')
     res.send({
         data: result
     })
 })
 
-app.get('/api/template', async (req, res) => {
+app.get('/template', async (req, res) => {
     const result = await templateHelper.getTemplate('./templates/' + req.query.template)
     res.send({
         data: result

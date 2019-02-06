@@ -18,7 +18,7 @@ export default class TemplatePane extends HTMLElement {
     connectedCallback() {
         this.$codeMirror = this.native.querySelector('tg-code-mirror')
         this.$dropdown = this.native.querySelector('tg-dropdown')
-        fetch(API_URL + 'api/templates').then(resp => {
+        fetch(API_URL + 'templates').then(resp => {
             resp.json().then(body => {
                 this._templates = body.data
                 if (this._templates.length) {
@@ -35,7 +35,7 @@ export default class TemplatePane extends HTMLElement {
 
     // Event handler for when the dropdown value changes
     async setSelectedResult() {
-        const resp = await fetch(API_URL + 'api/template?template=' + this.$dropdown.selectedOptionValue)
+        const resp = await fetch(API_URL + 'template?template=' + this.$dropdown.selectedOptionValue)
         const body = await resp.json()
         this.$codeMirror.value = body.data
     }

@@ -42,7 +42,7 @@ export default class TemplateGenerator extends HTMLElement {
     }
 
     async parseTemplate() {
-        const resp = await fetch(API_URL + 'api/parse', {
+        const resp = await fetch(API_URL + 'parse', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
