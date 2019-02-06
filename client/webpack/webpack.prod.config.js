@@ -7,7 +7,7 @@ module.exports = env => {
     plugins: [
       ...defaultConfig.plugins,
       new webpack.DefinePlugin({
-        "API_URL": JSON.stringify('http://template-generator.tk:3000/')
+        "API_URL": JSON.stringify('http://api.template-generator.tk/')
       })
     ],
     mode: 'production',
